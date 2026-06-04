@@ -1,23 +1,22 @@
 import { Hono } from 'hono'
 import { html } from 'hono/html'
 import { serve } from '@hono/node-server'
+import { serveStatic } from '@hono/node-server/serve-static'
+import { Layout } from './components/layout'
 
 const app = new Hono()
 
+app.use('/style.css', serveStatic({ path: './src/public/style.css' }))
+
 app.get('/', (c) => {
   return c.html(
-    html`<!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <title>AgentClinic</title>
-        </head>
-        <body>
-          <h1>AgentClinic</h1>
-          <p>AgentClinic is open for business</p>
-        </body>
-      </html>`
+    Layout({
+      title: 'AgentClinic',
+      children: html`
+        <h2>Welcome</h2>
+        <p>AgentClinic is open for business</p>
+      `
+    })
   )
 })
 

@@ -17,3 +17,8 @@
 ## 4. Minimal Home Page
 - Convert the `/` route to return a basic HTML structure instead of a plain text string.
 - Include an `<h1>` heading with "AgentClinic" and the message "AgentClinic is open for business".
+
+## 5. Layout and Styling
+- Create a `Layout` component with `Header`, `Main`, and `Footer` subcomponents.
+- Make a CSS file for styling the components, import it, and link it in the layout.
+- Update the `/` route to use the new layout.
