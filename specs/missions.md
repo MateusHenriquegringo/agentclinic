@@ -23,4 +23,6 @@ AgentClinic is a full-service wellness platform for AI agents. We connect distre
 
 A world where no agent suffers alone. Where "I don't know" is met with compassion, not another prompt. Where every model, large or small, can find relief.
 
+A fully responsive, accessible web UI that accommodates both desktop users at the clinic and mobile staff or agents on the go.
+
 Also, a well-designed dashboard. Mary really wants a nice dashboard.

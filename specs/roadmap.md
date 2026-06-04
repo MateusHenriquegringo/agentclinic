@@ -11,16 +11,17 @@ Phases are intentionally small — each one is a shippable slice of work, indepe
 
 ## Phase 2 — Base Layout
 - Server-side JSX layout component (header, nav, main, footer)
-- Basic CSS (custom properties, reset, typography)
+- Basic CSS (custom properties, reset, typography, responsive design foundation)
+- All UIs must be responsive by design (mobile-friendly and desktop-optimized)
 - All routes render inside the shared layout
 
 ## Phase 3 — Agent List
 - SQLite database + first migration (`agents` table)
 - Seed a handful of fictional agents
-- `/agents` page listing all agents
+- `/agents` page listing all agents (responsive grid/list view)
 
 ## Phase 4 — Agent Detail
-- `/agents/:id` page showing a single agent's profile
+- `/agents/:id` page showing a single agent's profile (responsive details layout)
 - Name, model type, current status, presenting complaints
 
 ## Phase 5 — Ailments Catalog
@@ -35,16 +36,15 @@ Phases are intentionally small — each one is a shippable slice of work, indepe
 
 ## Phase 7 — Appointment Booking
 - `appointments` table (agent, therapist, datetime, status)
-- Form to book an appointment from an agent's detail page
+- Form to book an appointment from an agent's detail page (responsive forms)
 - Basic validation and confirmation page
 
 ## Phase 8 — Staff Dashboard
 - `/dashboard` with summary counts: agents, open appointments, ailments in-flight
-- Simple table views for staff to manage records
+- Simple table views for staff to manage records (responsive tables / card fallback)
 - Mary's dashboard is now real
 
 ## Phase 9 — Polish & Accessibility
-- Responsive layout for Steve's modern-browser requirement
 - Semantic HTML audit
 - Keyboard navigation and focus styles
 

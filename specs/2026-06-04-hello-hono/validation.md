@@ -12,3 +12,7 @@ The implementation is considered successful and ready to merge if all of the fol
 
 3. **Type Checking:**
    - Running `npm run typecheck` (or `tsc --noEmit`) completes with zero type errors, verifying that the types work end-to-end.
+
+4. **Responsive Verification:**
+   - Verify the viewport `<meta name="viewport" content="width=device-width, initial-scale=1.0">` is present in the layout template.
+   - Verify the styling adapts correctly on mobile viewports (e.g. padding and margins adjust properly, content is not clipped horizontally).

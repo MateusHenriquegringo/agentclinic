@@ -19,6 +19,7 @@
 - Include an `<h1>` heading with "AgentClinic" and the message "AgentClinic is open for business".
 
 ## 5. Layout and Styling
-- Create a `Layout` component with `Header`, `Main`, and `Footer` subcomponents.
-- Make a CSS file for styling the components, import it, and link it in the layout.
+- Create a `Layout` component with `Header`, `Main`, and `Footer` subcomponents, ensuring it includes a responsive viewport `<meta>` tag.
+- Make a CSS file (`style.css`) for styling the components, using responsive design principles (e.g., media queries, flexbox, fluid typography, and relative units).
 - Update the `/` route to use the new layout.
+- Ensure styling responds gracefully to small mobile devices, tablets, and large desktop screens.
