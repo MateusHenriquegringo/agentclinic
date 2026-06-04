@@ -1,6 +1,8 @@
 # Changelog
 
 ## 2026-06-04
+- feat: add update-changelog.js script to automate changelog generation
+- feat: add web-responsive design, redefine *.MD and update CSS
 - Mark Phase 1 as complete
 - Update product specs and all feature specs to support responsive design
 - Implement responsive, mobile-first CSS styling (`src/public/style.css`)
