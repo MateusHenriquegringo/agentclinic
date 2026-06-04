@@ -1,96 +1,388 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+/* ============================================================
+   AgentClinic — Design System
+   Mobile-first, CSS custom properties, plain CSS
+   ============================================================ */
 
+/* ── Google Font is loaded via <link> in Layout ── */
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
 :root {
-  --bg-gradient: linear-gradient(135deg, hsl(220, 25%, 10%), hsl(220, 30%, 6%));
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --primary: hsl(190, 90%, 50%);
-  --primary-glow: hsla(190, 90%, 50%, 0.15);
-  --text-main: hsl(220, 20%, 90%);
-  --text-muted: hsl(220, 15%, 65%);
-  --accent: hsl(280, 80%, 65%);
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Color palette — whimsical-clinical: deep dark + teal + lavender */
+  --color-bg:            hsl(222, 28%, 8%);
+  --color-bg-alt:        hsl(222, 25%, 11%);
+  --color-surface:       rgba(255, 255, 255, 0.04);
+  --color-surface-hover: rgba(255, 255, 255, 0.08);
+  --color-border:        rgba(255, 255, 255, 0.09);
+
+  --color-teal:          hsl(185, 82%, 48%);
+  --color-teal-dim:      hsl(185, 60%, 35%);
+  --color-teal-glow:     hsla(185, 82%, 48%, 0.18);
+
+  --color-lavender:      hsl(265, 72%, 68%);
+  --color-lavender-dim:  hsl(265, 50%, 55%);
+  --color-lavender-glow: hsla(265, 72%, 68%, 0.18);
+
+  --color-amber:         hsl(38, 92%, 60%);
+  --color-amber-dim:     hsl(38, 70%, 48%);
+
+  --color-text:          hsl(220, 18%, 92%);
+  --color-text-muted:    hsl(220, 14%, 62%);
+  --color-text-faint:    hsl(220, 10%, 42%);
+
+  /* Spacing scale */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* Typography scale */
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size-xs:   0.75rem;
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.125rem;
+  --font-size-xl:   1.25rem;
+  --font-size-2xl:  1.5rem;
+  --font-size-3xl:  1.875rem;
+  --font-size-4xl:  2.25rem;
+
+  /* Border radius */
+  --radius-sm:   0.25rem;
+  --radius-md:   0.5rem;
+  --radius-lg:   0.75rem;
+  --radius-xl:   1rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.4);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.5);
+  --shadow-glow-teal:    0 0 24px var(--color-teal-glow);
+  --shadow-glow-lavender: 0 0 24px var(--color-lavender-glow);
+
+  /* Transitions */
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* ============================================================
+   2. RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================================
+   3. BASE
+   ============================================================ */
 body {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.65;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 10%, var(--color-teal-glow), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 80%, var(--color-lavender-glow), transparent);
   background-attachment: fixed;
-  color: var(--text-main);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  background: rgba(15, 23, 42, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--card-border);
-  padding: 1.5rem 2rem;
-  text-align: center;
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+
+p { color: var(--color-text-muted); }
+
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  color: var(--color-text);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ============================================================
+   4. LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline: var(--space-6);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* ============================================================
+   5. HEADER
+   ============================================================ */
+.site-header {
+  background: rgba(12, 18, 34, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) 0;
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: var(--transition-smooth);
 }
 
-header h1 {
-  font-size: 2rem;
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.site-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+}
+
+.logo-mark {
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+}
+
+.logo-text {
+  font-size: var(--font-size-2xl);
   font-weight: 700;
-  background: linear-gradient(90deg, var(--primary), var(--accent));
+  background: linear-gradient(90deg, var(--color-teal), var(--color-lavender));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px;
-  display: inline-block;
+  background-clip: text;
+  letter-spacing: -0.03em;
 }
 
+.site-tagline {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-faint);
+  font-weight: 300;
+  font-style: italic;
+}
+
+@media (min-width: 640px) {
+  .header-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+
+  .logo-text {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+/* ============================================================
+   6. NAV
+   ============================================================ */
+.site-nav {
+  background: var(--color-bg-alt);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-4);
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+.nav-link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--color-text);
+  background: var(--color-surface-hover);
+}
+
+.nav-link--active {
+  color: var(--color-teal);
+  background: var(--color-teal-glow);
+}
+
+.nav-link--active:hover {
+  color: var(--color-teal);
+  background: var(--color-teal-glow);
+}
+
+@media (min-width: 640px) {
+  .nav-list {
+    justify-content: flex-start;
+    padding: var(--space-2) var(--space-6);
+  }
+
+  .nav-link {
+    font-size: var(--font-size-base);
+    padding: var(--space-2) var(--space-4);
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-list {
+    padding: var(--space-2) var(--space-8);
+    gap: var(--space-2);
+  }
+}
+
+/* ============================================================
+   7. MAIN
+   ============================================================ */
 main {
   flex: 1;
+  padding: var(--space-8) var(--space-4);
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-  animation: fadeIn 0.6s ease-out;
+  max-width: 1100px;
+  margin-inline: auto;
+  animation: fadeIn 0.5s ease-out;
 }
 
-h2 {
-  font-size: 2.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  letter-spacing: -0.5px;
-  color: var(--text-main);
+@media (min-width: 640px) {
+  main {
+    padding: var(--space-10) var(--space-6);
+  }
 }
 
-p {
-  color: var(--text-muted);
-  font-size: 1.1rem;
-  font-weight: 300;
+@media (min-width: 1024px) {
+  main {
+    padding: var(--space-12) var(--space-8);
+  }
 }
 
-footer {
-  background: rgba(10, 15, 30, 0.9);
-  border-top: 1px solid var(--card-border);
-  text-align: center;
-  padding: 1.5rem 2rem;
+/* ============================================================
+   8. FOOTER
+   ============================================================ */
+.site-footer {
+  background: rgba(8, 12, 24, 0.9);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-6) 0;
   margin-top: auto;
-  font-size: 0.9rem;
-  color: var(--text-muted);
 }
 
-/* Animations */
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  text-align: center;
+}
+
+.footer-tagline {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.footer-copy {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-faint);
+}
+
+/* ============================================================
+   9. HOME — HERO
+   ============================================================ */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-8) 0;
+}
+
+.hero-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--color-teal), var(--color-lavender));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  max-width: 640px;
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-muted);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: var(--font-size-4xl);
+  }
+}
+
+/* ============================================================
+   10. ANIMATIONS
+   ============================================================ */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -98,43 +390,133 @@ footer {
   }
 }
 
-/* Responsive Design Queries */
-@media (max-width: 768px) {
-  header {
-    padding: 1rem;
-  }
-  
-  header h1 {
-    font-size: 1.6rem;
-  }
+/* ============================================================
+   11. AGENT GRID (Phase 2b — stubbed tokens)
+   ============================================================ */
+.agent-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
 
-  main {
-    padding: 2rem 1.25rem;
-  }
-
-  h2 {
-    font-size: 1.75rem;
-  }
-
-  p {
-    font-size: 1rem;
+@media (min-width: 640px) {
+  .agent-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
-  header {
-    padding: 0.8rem;
+@media (min-width: 1024px) {
+  .agent-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
+}
 
-  header h1 {
-    font-size: 1.4rem;
-  }
+.agent-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  transition: var(--transition);
+  text-decoration: none;
+  display: block;
+}
 
-  main {
-    padding: 1.5rem 1rem;
-  }
+.agent-card:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-teal-dim);
+  box-shadow: var(--shadow-glow-teal);
+  transform: translateY(-2px);
+}
 
-  h2 {
-    font-size: 1.5rem;
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge--active {
+  background: var(--color-teal-glow);
+  color: var(--color-teal);
+  border: 1px solid var(--color-teal-dim);
+}
+
+.status-badge--resting {
+  background: var(--color-lavender-glow);
+  color: var(--color-lavender);
+  border: 1px solid var(--color-lavender-dim);
+}
+
+.status-badge--in-therapy {
+  background: hsla(38, 92%, 60%, 0.15);
+  color: var(--color-amber);
+  border: 1px solid var(--color-amber-dim);
+}
+
+/* ============================================================
+   12. AILMENT TAGS (Phase 2c — stubbed tokens)
+   ============================================================ */
+.ailment-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.ailment-tag {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-lavender-glow);
+  color: var(--color-lavender);
+  border: 1px solid var(--color-lavender-dim);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+}
+
+/* ============================================================
+   13. DETAIL GRID (Phase 2b — agent profile)
+   ============================================================ */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .detail-grid {
+    grid-template-columns: 200px 1fr;
+    align-items: start;
   }
+}
+
+.detail-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  color: var(--color-text);
+}
+
+/* Back link */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-6);
+  transition: var(--transition);
+}
+
+.back-link:hover {
+  color: var(--color-teal);
 }

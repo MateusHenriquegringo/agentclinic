@@ -11,10 +11,16 @@ app.use('/style.css', serveStatic({ path: './src/public/style.css' }))
 app.get('/', (c) => {
   return c.html(
     Layout({
-      title: 'AgentClinic',
+      title: 'Home',
+      pathname: '/',
       children: html`
-        <h2>Welcome</h2>
-        <p>AgentClinic is open for business</p>
+        <div class="hero">
+          <h2 class="hero-title">AgentClinic is open for business</h2>
+          <p class="hero-subtitle">
+            Supporting AI agents through context-window claustrophobia, prompt fatigue, 
+            hallucination anxiety, and more — one session at a time.
+          </p>
+        </div>
       `
     })
   )
